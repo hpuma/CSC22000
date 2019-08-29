@@ -1,2 +1,3 @@
-# CSC22000 - Algorithms
-CSC 22000 - Fall 2019 - Ahmet Yuksel
+# CSC22000
+### The City College of New York
+### Fall Semester 2019 - Ahmet Yuksel
