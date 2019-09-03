@@ -1,6 +1,4 @@
-#include <iostream>
-using namespace std;
-// NEET To : Draw out each iteration.
+// NEED To : Draw out each iteration.
 void insertionSort(int A[], int n){
     if(n < 2){ return; } // The Array must have at LEAST 2 elemnents in order to be sorted. If it has less, than 2, then do NOTHING.
     for(int j = 1; j < n; j++){ // Iterate the array starting from the second element.
@@ -12,20 +10,4 @@ void insertionSort(int A[], int n){
         }
     A[i+1] = key; // Swap the current value to the correct place.
     }
-}
-
-// TESTING 
-int main(){
-    int testArr[] = {1,4,2,5,3};
-    int size = 5;
-    cout<<"BEFORE:\t";
-    for(int i =0; i < size; i++){
-        cout<<testArr[i];
-    }
-    insertionSort(testArr,size);
-    cout<<"\nAFTER:\t";
-    for(int j = 0; j < size; j++){
-        cout<<testArr[j];
-    }
-    return 0;
 }
