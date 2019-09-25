@@ -1,7 +1,8 @@
 #include <iostream>
-#include<cmath> 
+#include <cmath> 
 #include "InsertionSort.cpp"
 #include "Merge.cpp"
+#include "DataStructures/Heap.h"
 using namespace std;
 int main(){
     int testArr[] = {1,4,2,5,3};
@@ -17,4 +18,3 @@ int main(){
     }
     return 0;
 }
-
