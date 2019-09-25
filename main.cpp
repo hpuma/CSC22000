@@ -1,4 +1,5 @@
 #include <iostream>
+#include<cmath> 
 #include "InsertionSort.cpp"
 #include "Merge.cpp"
 using namespace std;
