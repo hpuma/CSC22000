@@ -1,16 +1,17 @@
 // MERGE ... Takes two sub arrays and sorts them in non decreasing order.
 // NOTE: p == 0, q == n/2 and r = n-1
-// Page 31 of textbook
+// Page 31 of textbook.
 
 void merge(int A[], int p, int q, int r){
     // Divides the array into two subarrays of equal length.
     int n1 = q - p+1;
     int n2 = r - q;
-    // We make two arrays L for left and R for right. Both arrays have an additional element to store the sentinal value.
+    // We split the array in half and assign it to L for left and R for right. Both arrays have an additional element to store a sentinal value.
+    // The sentinel value will be used to determine the small array is finished traversing.
     int L[n1+1] = {};
     int R[n2+1] = {};
 
-    // Setting up the ndexes of the left and right subarrays used to store the halves of A/
+    // Setting up the indexes of the left and right subarrays used to store the halves of A.
     int i = 0;  
     int j = 0;
 
@@ -23,7 +24,7 @@ void merge(int A[], int p, int q, int r){
         R[j] = A[q+j+1];
     }
 
-    /* This stores a sentinal value of the largest possible number in the last element
+    /* This stores a sentinal value of the largest possible number in the last element.
     this value will help us determine which array is empty and add on the rest of the non empty array.*/
     L[n1] = INT_MAX;
     R[n2] = INT_MAX;
