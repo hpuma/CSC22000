@@ -2,7 +2,7 @@
 // NOTE: p == 0, q == n/2 and r = n-1
 // Page 31 of textbook.
 
-void merge(int A[], int p, int q, int r){
+void Merge(int A[], int p, int q, int r){
     // Divides the array into two subarrays of equal length.
     int n1 = q - p+1;
     int n2 = r - q;
