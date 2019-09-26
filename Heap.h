@@ -29,6 +29,7 @@ public:
 	count = 0;
     }
     Heap(Item inputData[],int n){
+	assert(n < capacity);
 	capacity = DEF_CAP;
 	Item* newData = new Item[capacity];
 	for(int i = 0; i < n; i++){
@@ -41,13 +42,7 @@ public:
 
     size_t getCount() {return count;}
 
-    // MODIFICATION MEMBER FUNCTIONS
-    void insert(const Item& entry) {
-		data[count] = INT_MIN;
-		count++;
-		increaseKey(count-1, entry);
-	}
-
+	// This only applies to one set of parent and children.
     void maxHeapify(const size_t& i){
 	// NOTE: Current Node i = Parent.
 	// Set the largest node as the current node by default. This is the index of the element with the largest value.
@@ -80,7 +75,6 @@ public:
 		maxHeapify(i);
 	}
 }
-
     Item minimum();
     Item maximum();
     
