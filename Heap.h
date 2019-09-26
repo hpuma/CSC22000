@@ -1,18 +1,13 @@
 #ifndef __HEAP_H__
 #define __HEAP_H__
-// Previous two lines are the start of the marco guard
-
-// CSc 21200 - Spring 2019
-// Homework 5 header file
-
-// Try not to change this file
-
+// Class Defeinition of Heap in Dynamic Array format.
 #include <iostream>
-#include <cassert>    // Provides assert
+#include <iomanip>	// Provides setw
+#include <cassert>  // Provides assert
 #include <cctype>
-#include <cmath>      // Provides floor
+#include <cmath>    // Provides floor
 #include <cstdio>
-#include <cstdlib>    // Provides size_t
+#include <cstdlib>  // Provides size_t
 #include <climits>
 
 using namespace std;
@@ -22,24 +17,26 @@ class Heap
 {
 public:
     const size_t DEF_CAP = 30;
-    // CONSTRUCTOR
+    // CONSTRUCTORS
     Heap(){
 	capacity = DEF_CAP;
 	data = new Item[capacity];
 	count = 0;
     }
-    Heap(Item inputData[],int n){
+	// Overwrites the current Heap Data.
+	// n: is the size of the "inputData" array.
+    Heap(Item inputData[],const size_t& n){
 	assert(n < capacity);
 	capacity = DEF_CAP;
 	Item* newData = new Item[capacity];
-	for(int i = 0; i < n; i++){
+	for(size_t i = 0; i < n; i++){
 		newData[i] = inputData[i];
 	}
 	delete data;
 	data = newData;
 	count = n;
     }
-
+	// Returns the number of non-empty elements within the Heap.
     size_t getCount() {return count;}
 
 	// This only applies to one set of parent and children.
@@ -47,7 +44,6 @@ public:
 	// NOTE: Current Node i = Parent.
 	// Set the largest node as the current node by default. This is the index of the element with the largest value.
 	    size_t largest = i;
-
 	// Make sure that the left childindex is within the array bounds AND check if the left child has its value greater than the parent.
 	    if (left(i) <= getCount() && data[left(i)] > data[i]){
 		largest = left(i); // If the right child has a greater value than the value at the largest index, then set the largest index to the left child index.
@@ -68,31 +64,45 @@ public:
 		    maxHeapify(largest);
 	    }
     }
+	// The last node that has children is located within floor(heapSize/2), if we decrement the index of the data array we are actually traversing the Heap upwards.
+	// BuildMaxHeap applies the Max Heap property to all the nodes within the Heap.
     void buildMaxHeap(){
-	// Apply the max heap property from the bottom to top.
-	size_t heapSize = getCount();
-	for (size_t i = floor(heapSize/2); i >= 0; i--){
-		maxHeapify(i);
+		// Gets the size of the size of the Heap. If there is a single node or an empty Heap, then we don't do anything to the Heap.
+		size_t heapSize = getCount();
+		if(heapSize <= 1){
+			return;
+		}
+		for (size_t i = floor(heapSize/2); i >= 0; i--){
+			maxHeapify(i);
+		}
+	}	
+	// Simple function that prints the current data within the Heap.
+	void printHeap(){
+		size_t n = getCount();
+		cout<<"HEAP:\t";
+		for(size_t i = 0; i < n; i++){
+			cout<<data[i];
+			if(i != n-1){
+				cout<<","<<setw(1);
+			}
+		}
+		cout<<" ]";
 	}
-}
-    Item minimum();
-    Item maximum();
     
 private:
     Item* data;
     size_t count;
     size_t capacity;
-
-    size_t parent(size_t i) {return floor((i-1)/2);}
-    size_t left  (size_t i) {return 2*i+1;}
-    size_t right (size_t i) {return 2*i+2;}
+	// Node access within the heap.
+    size_t parent(const size_t& i) {return floor((i-1)/2);}
+    size_t left  (const size_t& i) {return 2*i+1;}
+    size_t right (const size_t& i) {return 2*i+2;}
 };
 
 template <class Item>
-void swap(Item& x, Item& y) {
+void swap(Item& x,Item& y) {
 	Item temp = x;
 	x = y;
 	y = temp;
 }
-
 #endif
