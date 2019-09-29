@@ -25,34 +25,48 @@ public:
     }
 	// Overwrites the current Heap Data.
 	// n: is the size of the "inputData" array.
-    Heap(Item inputData[],const size_t& n){
-	assert(n < capacity);
+    Heap(Item inputData[], size_t n){
 	capacity = DEF_CAP;
 	Item* newData = new Item[capacity];
 	for(size_t i = 0; i < n; i++){
 		newData[i] = inputData[i];
 	}
-	delete data;
 	data = newData;
 	count = n;
     }
 	// Returns the number of non-empty elements within the Heap.
-    size_t getCount() {return count;}
-
+    size_t getCount() const{
+		return count;
+	}
+	Item getRoot() const{
+		if(getCount() == 0){
+			return Item();
+		}
+		return data[0];
+	}
+	void deleteRoot(){
+		if(getCount() == 0){
+			return;
+		}else{
+		size_t  lastIndex = getCount() - 1;
+		data[0] = data[lastIndex];
+		count = lastIndex;
+		}
+	}
 	// This only applies to one set of parent and children.
-    void maxHeapify(const size_t& i){
+    void maxHeapify(size_t i){
 	// NOTE: Current Node i = Parent.
 	// Set the largest node as the current node by default. This is the index of the element with the largest value.
 	    size_t largest = i;
 	// Make sure that the left childindex is within the array bounds AND check if the left child has its value greater than the parent.
-	    if (left(i) <= getCount() && data[left(i)] > data[i]){
+	    if (left(i) < getCount() && data[left(i)] > data[i]){
 		largest = left(i); // If the right child has a greater value than the value at the largest index, then set the largest index to the left child index.
 	    }
 	    else{
 		largest = i;  // Set the largest to the parent.
 	    }
 	// Make sure that the right child index is within the array bounds AND check if the value of the right child is greater than the node at the largest index.
-	    if(right(i) <= getCount() && data[right(i)] > data[largest]){
+	    if(right(i) < getCount() && data[right(i)] > data[largest]){
 		    largest = right(i); // If the right child has a greater value than the value at the largest index, then set the largest index to the right child index.
 	    }
 	/* This while loop checks if one of the children nodes have a greater value than the parent. If it doesn't, then largest = i which is the parent.
@@ -72,21 +86,21 @@ public:
 		if(heapSize <= 1){
 			return;
 		}
-		for (size_t i = floor(heapSize/2); i >= 0; i--){
+		for (size_t i = floor(heapSize/2)-1; i >= 0; i--){
 			maxHeapify(i);
 		}
 	}	
 	// Simple function that prints the current data within the Heap.
 	void printHeap(){
 		size_t n = getCount();
-		cout<<"HEAP:\t";
+		cout<<"HEAP:\t[";
 		for(size_t i = 0; i < n; i++){
 			cout<<data[i];
 			if(i != n-1){
-				cout<<","<<setw(1);
+				cout<<","<<setw(2);
 			}
 		}
-		cout<<" ]";
+		cout<<"]\n";
 	}
     
 private:
