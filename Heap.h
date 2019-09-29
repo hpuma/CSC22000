@@ -38,23 +38,23 @@ public:
     size_t getCount() const{
 		return count;
 	}
-	Item getRoot() const{
-		if(getCount() == 0){
-			return Item();
-		}
-		return data[0];
-	}
 	void deleteRoot(){
 		if(getCount() == 0){
 			return;
 		}else{
 		size_t  lastIndex = getCount() - 1;
 		data[0] = data[lastIndex];
-		count = lastIndex;
+		count--;
 		}
 	}
+	Item getRoot() const{
+		if(getCount() == 0){
+			return Item();
+		}
+		return data[0];
+	}	
 	// This only applies to one set of parent and children.
-    void maxHeapify(size_t i){
+    void maxHeapify(const size_t& i){
 	// NOTE: Current Node i = Parent.
 	// Set the largest node as the current node by default. This is the index of the element with the largest value.
 	    size_t largest = i;
@@ -86,9 +86,10 @@ public:
 		if(heapSize <= 1){
 			return;
 		}
-		for (size_t i = floor(heapSize/2)-1; i >= 0; i--){
+		for (size_t i = floor((heapSize-1)/2); i >= 1; i--){
 			maxHeapify(i);
 		}
+		maxHeapify(0);
 	}	
 	// Simple function that prints the current data within the Heap.
 	void printHeap(){
@@ -109,8 +110,8 @@ private:
     size_t capacity;
 	// Node access within the heap.
     size_t parent(const size_t& i) {return floor((i-1)/2);}
-    size_t left  (const size_t& i) {return 2*i+1;}
-    size_t right (const size_t& i) {return 2*i+2;}
+    size_t left  (const size_t& i) {return (2*i)+1;}
+    size_t right (const size_t& i) {return (2*i)+2;}
 };
 
 template <class Item>
