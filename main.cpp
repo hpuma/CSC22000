@@ -7,7 +7,8 @@
 #include "MergeSort.cpp"
 #include "HeapSort.cpp"
 using namespace std;
-void printArr(int A[],size_t n){
+template<class Item>
+void printArr(Item A[],size_t n){
     cout<<"[";
     for(size_t i = 0; i < n; i++){
 			cout<<A[i];
