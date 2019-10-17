@@ -6,6 +6,7 @@
 #include "Merge.cpp"
 #include "MergeSort.cpp"
 #include "HeapSort.cpp"
+#include "QuickSort.cpp"
 using namespace std;
 template<class Item>
 void printArr(Item A[],size_t n){
