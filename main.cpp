@@ -24,11 +24,12 @@ int main(){
     size_t size = 7;
     cout<<"BEFORE:\t"; printArr(testArr,size);
 
-    // Merge Sort.
+    // MERGE SORT
     // MergeSort(testArr,0,size-1);
 
-    //HeapSort
-    HeapSort(testArr,size);
+    //HEAP SORT
+    // HeapSort(testArr,size);
+    QuickSort(testArr,size,0,6);
 
     cout<<"AFTER:\t"; printArr(testArr,size);
     return 0;

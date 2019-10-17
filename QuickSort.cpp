@@ -1,11 +1,8 @@
 // S: 10/16/19
-
-void quickSort(int A[], int size, int p, int r){
-    if(p < r){
-        int q = Partition(A,size,p,r);
-        quickSort(A,size,p,q-1);
-        quickSort(A,size,q+1,r);
-    }
+void swap(int A[], int size, int i, int j){
+    int temp = A[i];
+    A[i] = A[j];
+    A[j] = temp;
 }
 
 int Partition(int A[], int size, int p, int r){
@@ -22,22 +19,10 @@ int Partition(int A[], int size, int p, int r){
 }
 
 
-void swap(int A[], int size, int i, int j){
-    try{
-        if(i < 0){
-            throw i;
-        }
-        if(j == size){
-            throw j;
-        }
-        int temp = A[i];
-        A[i] = A[j];
-        A[j] = temp;
-    }
-    catch(int i){
-        cout<<"\n"<<i<<" is a negative index!\n";
-    }
-    catch(int j){
-        cout<<"\n"<<j<<" is an index out of bounds!\n";
+void QuickSort(int A[], int size, int p, int r){
+    if(p < r){
+        int q = Partition(A,size,p,r);
+        QuickSort(A,size,p,q-1);
+        QuickSort(A,size,q+1,r);
     }
 }
