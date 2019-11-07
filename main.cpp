@@ -1,7 +1,10 @@
 #include <iostream>
 #include <cmath> 
+#include <stdlib.h>
+#include <stdio.h>
 #include <bits/stdc++.h> // Provides INT_MAX,
 #include <cstddef> // Provides size_t type.
+#include "ArrayBuilder.h"
 #include "InsertionSort.cpp"
 #include "Merge.cpp"
 #include "MergeSort.cpp"
@@ -20,6 +23,7 @@ void printArr(Item A[],size_t n){
 	cout<<"]\n";
 }
 int main(){
+    ArrayBuilder test();
     int testArr[] = {2,4,5,6,1,7,3};
     size_t size = 7;
     cout<<"BEFORE:\t"; printArr(testArr,size);
