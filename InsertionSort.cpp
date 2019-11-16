@@ -1,10 +1,10 @@
-
-// Time Complexity: O(n^2)
-// NOTE: In order to apply this sorting algorithm, A MUST have at LEAST 2 elements
-// A: Array to be sorted
-// n: size of the array
-// Trace: TRUE == print array when changed.
 # include "ArrayBuilder.h"
+/* Time Complexity: O(n^2)
+NOTE: In order to apply this sorting algorithm, A MUST have at LEAST 2 elements
+A: Array to be sorted
+n: size of the array
+Trace: TRUE == print array when changed.
+*/
 void insertionSort(int A[], int n, bool Trace){
     ArrayBuilder f;
     // The Array must have at LEAST 2 elemnents in order to be sorted. If it has less, than 2, then do NOTHING.
