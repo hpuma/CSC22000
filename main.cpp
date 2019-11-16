@@ -10,12 +10,13 @@
 #include "MergeSort.cpp"
 #include "HeapSort.cpp"
 #include "QuickSort.cpp"
+#include "Node.h"
 using namespace std;
 
 int main(){
     int testArr[] = {8,2,4,9,3,6};
     size_t size = 6;
-    insertionSort(testArr,size,true);
-
+    Node<int>* test = new Node<int>(10);
+    cout<<test->getData();
     return 0;
 }
