@@ -1,3 +1,5 @@
+#ifndef __ARRAYBUILDER_H__
+#define __ARRAYBUILDER_H__
 #include <iostream>
 #include <iomanip>
 #include <time.h>		   //for srand seed generator
@@ -13,7 +15,10 @@ int* Data;
 size_t DataSize;
 
 public:
-ArrayBuilder(){}
+ArrayBuilder(){
+    Data = NULL;
+    DataSize = 0;
+}
 ArrayBuilder(int InputData[], size_t DataSize){
     int* NewData = new int[DataSize];
     this->DataSize = DataSize;
@@ -43,15 +48,31 @@ int* getData(){
 size_t getDataSize(){
     return this->DataSize;
 }
-
+// Prints the data array.
 void printDataArray(){
     size_t index = 0;
-    cout<<"\n["<<setw(1);
+    size_t lastElement = DataSize-1;
+    cout<<"\n[";
     while(index < DataSize){
-        cout<<this->Data[index++]<<" ";
-        if(index != DataSize-1){
-            cout<<","<<setw(1);
+        cout<<this->Data[index];
+        if(index != lastElement){
+            cout<<","<<setw(2);
         }
+        index++;
+    }
+    cout<<setw(1)<<"]\n";
+}
+// Prints any given array.
+void printArr(int A[], int size){
+    size_t index = 0;
+    size_t lastElement = size - 1;
+    cout<<"\n[";
+    while(index < size){
+        cout<<A[index];
+        if(index != lastElement){
+            cout<<","<<setw(2);
+        }
+        index++;
     }
     cout<<setw(1)<<"]\n";
 }
@@ -81,3 +102,4 @@ int* RandomArray(size_t size, int LeftBound, int RightBound){
 }
 
 };
+#endif
