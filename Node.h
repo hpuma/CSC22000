@@ -1,12 +1,12 @@
 #ifndef __NODE_H__
 #define __NODE_H__
 #include <iostream>
-#include <iomanip>	// Provides setw
-#include <cassert>  // Provides assert
+#include <iomanip>
+#include <cassert> 
 #include <cctype>
-#include <cmath>    // Provides floor
+#include <cmath>    
 #include <cstdio>
-#include <cstdlib>  // Provides size_t
+#include <cstdlib>  
 #include <climits>
 template <class Item> 
 class Node{
@@ -27,31 +27,34 @@ Node(Item Data, Node<Item>* leftChild = NULL, Node<Item>* rightChild = NULL){
     this->rightChild = rightChild;
 }
 ~Node(){
-    this->data = 0;
+    this->data = Item();
     delete leftChild;
     delete rightChild;
 }
 void setData(Item Data){
     this->data = Data;
 }
-void setLeft(Node<Item>* Node){
-    this->leftChild = Node;
+void setLeft(Node<Item>* node){
+    this->leftChild = node;
 }
-void setRight(Node<Item>* Node){
-    this->rightChild;
+void setRight(Node<Item>* node){
+    this->rightChild = node;
 }
-Item getData() const{
-    return (this->data);
+Item getData(){
+    return data;
 }
-Node<Item>* getRight() const{
-    return this->rightChild;
-}
-Node<Item>* getLeft() const{
+Node<Item>* getLeft() {
     return this->leftChild;
 }
-bool isLeaf() const{
-    return (this->leftChild == NULL && this->rightChild == NULL);
+Node<Item>* getRight() {
+    return this->rightChild;
 }
 
+bool isLeaf() {
+    return (this->leftChild == NULL && this->rightChild == NULL);
+}
 };
+
+
+
 #endif
