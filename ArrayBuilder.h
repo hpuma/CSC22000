@@ -66,7 +66,7 @@ void printDataArray(){
 void printArr(int A[], int size){
     size_t index = 0;
     size_t lastElement = size - 1;
-    cout<<"[";
+    cout<<"[ ";
     while(index < size){
         cout<<A[index];
         if(index != lastElement){
@@ -74,7 +74,7 @@ void printArr(int A[], int size){
         }
         index++;
     }
-    cout<<setw(1)<<"]";
+    cout<<" ]\n";
 }
 bool validData(){
     return (Data != NULL && DataSize > 1);

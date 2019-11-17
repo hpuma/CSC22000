@@ -23,8 +23,8 @@ void CountingSort(int A[], int B[], size_t n, size_t k, bool Trace){
         C[A[j]] += 1;
     }
     if(Trace){
-        cout<<"TRACK A TO C:\t";
-        f.printArr(C,k+1);
+        cout<<"\nTRACK A TO C:\t";
+        f.printArr(C,n+1);
         cout<<"\n";
     }
     // Start from the second element in C, and add the count from the previous element to 
@@ -35,19 +35,64 @@ void CountingSort(int A[], int B[], size_t n, size_t k, bool Trace){
     }
     if(Trace){
         cout<<"SUM PREVIOUS C:\t";
-        f.printArr(C,k+1);
+        f.printArr(C,n+1);
         cout<<"\n";
     }
     // Iterates through A
     // USE the value from A, to access C.
     // Then take the value of C to access B
     // Finally, add the value from A to B.
-    for(size_t j = 0; j < n; j++){
-        B[C[A[j]]-1] = A[j];
-        C[A[j]] -= 1; // NOTE: we subtract by 1 because of 0 indexing.
+    for(size_t j = 0; j  < n; j++){
+        B[C[A[j]]-1] = A[j];    // NOTE: we subtract by 1 because of 0 indexing.
+        C[A[j]] -= 1; 
     }
     if(Trace){
-        cout<<"B:\t\t\t\t";
+        cout<<"B:\t\t";
         f.printArr(B,n);
+    }
+}
+int getMax(int A[], size_t n){
+    int maxVal = INT_MIN;
+    for(int i = 0; i < n; i++){
+        if(A[i] > maxVal){
+            maxVal = A[i];
+        }
+    }
+    return maxVal;
+}
+void CountingRadix(int A[],int B[], int C[], size_t n, size_t k, bool Trace){
+    int count[k+1];
+    int A_SORT[n];
+    int B_SORT[n];
+    int C_SORT[n];
+    for(int i = 0; i <= k; i++){
+        count[i] = 0;
+    }
+    for(int j = 0; j < n; j++){
+        count[A[j]] += 1;
+    }
+    for(int i = 1; i <= k; i++){
+        count[i] = count[i] + count[i-1];
+    }
+    for(int j = 0; j < n; j++){
+        A_SORT[count[A[j]]-1] = A[j];
+        B_SORT[count[A[j]]-1] = B[j];
+        C_SORT[count[A[j]]-1] = C[j];
+        count[A[j]] -=1;
+    }
+    for (int i = 0; i < n; i++){
+        A[i] = A_SORT[i];
+        B[i] = B_SORT[i];
+        C[i] = C_SORT[i];
+    }
+    if(Trace){
+        ArrayBuilder f;
+        cout<<"A:\t";
+        f.printArr(A,n);
+        cout<<"B:\t";
+        f.printArr(B,n);
+        cout<<"C:\t";
+        f.printArr(C,n);
+        cout<<"\n";
     }
 }
