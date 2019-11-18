@@ -7,8 +7,8 @@
 # include <iomanip>
 void Merge(int A[], int p, int q, int r, bool Trace){
     // Divides the array into two subarrays of equal length.
-    int n1 = q - p+1; // Θ(1)
-    int n2 = r - q; // Θ(1)
+    int n1 = q - p+1; // Beginning to middle  Θ(1)
+    int n2 = r - q; // 1 after middle to end  Θ(1)
     // We split the array in half and assign it to L for left and R for right. Both arrays have an additional element to store a sentinal value.
     // The sentinel value will be used to determine the small array is finished traversing.
     int L[n1+1] = {}; // Θ(1)
@@ -34,7 +34,6 @@ void Merge(int A[], int p, int q, int r, bool Trace){
     if(Trace){
         ArrayBuilder f;
         cout<<"LEFT:";
-        cout<<setw((n1-n2+1)*6);
         cout<<"\t\tRIGHT:\n";
         f.printArr(L,n1);
         cout<<"\t\t";
@@ -44,7 +43,7 @@ void Merge(int A[], int p, int q, int r, bool Trace){
     // We are preparing for the sub array comparisons, this means we reset the indexes of the left and right sub arrays.
     i = 0;  // Θ(1)
     j = 0; // Θ(1)
-    // For loop that iterates both arrays of equal lengths, the smallest one gets sorted...
+    // For loop that iterates both arrays of equal lengths, the smallest one get added to A until both R and L are empty.
     for (int k = p; k <= r; k++){ // Θ(n)
         if(L[i] <= R[j]){
             A[k] = L[i];

@@ -8,14 +8,14 @@ if Trace:
 TRACK A TO C: Prints out C after iterating through A.
 SUM PREVIOUS C: Prints out C after summing the pairs of elements.
 B: Prints out the sorted array.*/
-void CountingSort(int A[], int B[], size_t n, size_t k, bool Trace){
-    ArrayBuilder f; // Used to print arrays when needed.
+void CountingSort(int A[], size_t n, size_t k, bool Trace){
+       ArrayBuilder f; // Used to print arrays when needed.
     // C: Used to keep count of all the value counts in A.
     int* C = new int[k+1]; // We extend C by 1 since we are dealing with 0 indexing.
-
+    int B[n];
     // Initialize all the values in C to 0.
     // NOTE: We go all the way up to k index because C has that extra space
-    for (size_t i = 0; i <= k; i++){
+    for(size_t i = 0; i <= k; i++){
         C[i] = 0;
     }
     // Iterate through A, and incremement it's count in C by 1.
@@ -80,7 +80,7 @@ void CountingRadix(int A[],int B[], int C[], size_t n, size_t k, bool Trace){
         C_SORT[count[A[j]]-1] = C[j];
         count[A[j]] -=1;
     }
-    for (int i = 0; i < n; i++){
+    for(int i = n-1; i >=0; i--){  
         A[i] = A_SORT[i];
         B[i] = B_SORT[i];
         C[i] = C_SORT[i];
@@ -89,9 +89,9 @@ void CountingRadix(int A[],int B[], int C[], size_t n, size_t k, bool Trace){
         ArrayBuilder f;
         cout<<"A:\t";
         f.printArr(A,n);
-        cout<<"B:\t";
+        cout<<"\nB:\t";
         f.printArr(B,n);
-        cout<<"C:\t";
+        cout<<"\nC:\t";
         f.printArr(C,n);
         cout<<"\n";
     }

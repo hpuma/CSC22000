@@ -74,7 +74,7 @@ void printArr(int A[], int size){
         }
         index++;
     }
-    cout<<" ]\n";
+    cout<<" ]";
 }
 bool validData(){
     return (Data != NULL && DataSize > 1);
